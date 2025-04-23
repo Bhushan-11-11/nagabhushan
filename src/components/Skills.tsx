@@ -52,22 +52,29 @@ const Skills = () => {
   const [animated, setAnimated] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
+    // Set up the intersection observer with a lower threshold for earlier triggering
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const skillId = entry.target.getAttribute('data-skill-id');
             if (skillId) {
-              setAnimated(prev => ({ ...prev, [skillId]: true }));
+              // Add a slight delay to make the animation more noticeable
+              setTimeout(() => {
+                setAnimated(prev => ({ ...prev, [skillId]: true }));
+              }, 100);
             }
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
-    const skillElements = document.querySelectorAll('.skill-progress');
-    skillElements.forEach(el => observer.observe(el));
+    // Wait for DOM to be ready before observing
+    setTimeout(() => {
+      const skillElements = document.querySelectorAll('.skill-progress');
+      skillElements.forEach(el => observer.observe(el));
+    }, 100);
 
     return () => observer.disconnect();
   }, []);
@@ -90,7 +97,7 @@ const Skills = () => {
                   return (
                     <div 
                       key={skillIndex} 
-                      className="skill-icon"
+                      className="skill-item"
                     >
                       <div className="flex items-center gap-3 mb-2">
                         <div 
@@ -101,7 +108,7 @@ const Skills = () => {
                         </div>
                         <span className="text-charcoal font-medium">{skill.name}</span>
                         <span className="text-charcoal/60 text-sm ml-auto">
-                          {animated[skillId] ? skill.proficiency : 0}%
+                          {animated[skillId] ? skill.proficiency : '0'}%
                         </span>
                       </div>
                       <div 
@@ -110,7 +117,10 @@ const Skills = () => {
                       >
                         <Progress 
                           value={animated[skillId] ? skill.proficiency : 0} 
-                          className="h-2 bg-softBlue/20 transition-all duration-1000 ease-out"
+                          className="h-2 bg-softBlue/20"
+                          style={{
+                            transition: "all 1s ease-out",
+                          }}
                         />
                       </div>
                     </div>
