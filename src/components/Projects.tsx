@@ -1,7 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Code, ExternalLink, BarChart, Users } from 'lucide-react';
+import { Github, Code, ExternalLink, BarChart, Users, FileCode, Search } from 'lucide-react';
 
 const projects = [
   {
@@ -21,20 +20,38 @@ const projects = [
     outcome: 'Delivered a working prototype that significantly improves attendance tracking user experience.'
   },
   {
-    title: 'Human vs AI Code Analysis',
-    description: 'Research project analyzing code quality differences between AI-generated and human-written code using SonarQube.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['SonarQube', 'GitHub', 'ChatGPT', 'GitHub Copilot', 'Java', 'Python'],
+    title: 'Human vs AI Code Analysis Research',
+    description: 'Research initiative guided by Dr. Sulthana investigating ethical and technical differences between human-written and AI-generated code using advanced static analysis.',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    techStack: ['SonarQube', 'ChatGPT', 'GitHub Copilot', 'Java', 'Python', 'Static Analysis'],
     github: 'https://github.com/example/code-analysis',
     projectLink: 'https://code-quality-research.vercel.app',
-    icon: BarChart,
+    icon: Search,
     features: [
-      'Analyzed 60 code samples',
-      'Evaluated bug density',
-      'Assessed code maintainability',
-      'Compared AI vs human code'
+      'Analyzed code quality metrics',
+      'Compared maintainability scores',
+      'Evaluated security implications',
+      'Assessed ethical considerations'
     ],
-    outcome: 'Provided key insights into AI coding strengths and limitations.'
+    metrics: {
+      duplications: 'AI: 28% vs Human: 12%',
+      maintainability: 'AI: B vs Human: A',
+      reliability: 'AI: 3.2/5 vs Human: 4.1/5',
+      security: 'AI: 85% vs Human: 92%'
+    },
+    workflow: [
+      'Code Collection',
+      'Categorization',
+      'SonarQube Analysis',
+      'Results Analysis'
+    ],
+    findings: [
+      'AI excels in rapid development',
+      'Humans better at complex logic',
+      'Security considerations vary',
+      'Ethical implications identified'
+    ],
+    outcome: 'Revealed key insights into AI coding patterns, maintainability challenges, and ethical considerations in automated code generation.'
   },
   {
     title: 'Education & Employment Portal',
@@ -70,6 +87,19 @@ const Projects = () => {
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                   loading="lazy"
                 />
+                {project.metrics && (
+                  <div className="absolute inset-0 bg-black/70 opacity-0 hover:opacity-100 transition-opacity duration-300 p-4 text-white overflow-y-auto">
+                    <h4 className="font-semibold mb-2">Research Metrics:</h4>
+                    <ul className="text-sm space-y-2">
+                      {Object.entries(project.metrics).map(([key, value]) => (
+                        <li key={key} className="flex justify-between">
+                          <span className="capitalize">{key}:</span>
+                          <span className="text-primary-foreground">{value}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
               
               <CardHeader>
@@ -94,12 +124,39 @@ const Projects = () => {
               <CardContent className="flex-grow">
                 <p className="text-charcoal/70 mb-4">{project.description}</p>
                 
+                {project.workflow && (
+                  <div className="mb-4">
+                    <p className="text-primary font-medium text-sm mb-2">Research Workflow:</p>
+                    <div className="flex justify-between items-center">
+                      {project.workflow.map((step, idx) => (
+                        <div key={idx} className="flex flex-col items-center text-xs">
+                          <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-1">
+                            {idx + 1}
+                          </div>
+                          <span className="text-center">{step}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
                 {project.features && (
                   <div className="mb-4">
                     <p className="text-primary font-medium text-sm mb-2">Key Features:</p>
                     <ul className="list-disc list-inside text-charcoal/70 text-sm">
                       {project.features.map((feature, idx) => (
                         <li key={idx}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
+                {project.findings && (
+                  <div className="mb-4">
+                    <p className="text-primary font-medium text-sm mb-2">Key Findings:</p>
+                    <ul className="list-disc list-inside text-charcoal/70 text-sm">
+                      {project.findings.map((finding, idx) => (
+                        <li key={idx}>{finding}</li>
                       ))}
                     </ul>
                   </div>
