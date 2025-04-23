@@ -1,3 +1,4 @@
+
 import { 
   Code, 
   FileText, 
@@ -83,14 +84,16 @@ const Skills = () => {
                           <Icon size={20} color={skill.color} />
                         </div>
                         <span className="text-charcoal font-medium">{skill.name}</span>
-                        <span className="text-charcoal/60 text-sm ml-auto">
-                          {isHovered ? `${skill.proficiency}%` : '0%'}
-                        </span>
+                        {isHovered && (
+                          <span className="text-charcoal/60 text-sm ml-auto">
+                            {skill.proficiency}%
+                          </span>
+                        )}
                       </div>
                       {isHovered && (
                         <div className="skill-progress">
                           <Progress 
-                            value={isHovered ? skill.proficiency : 0} 
+                            value={skill.proficiency} 
                             className="h-2 bg-softBlue/20"
                             style={{
                               transition: "all 0.6s ease-out",
