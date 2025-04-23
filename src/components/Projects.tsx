@@ -1,37 +1,56 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, BarChart, Users } from 'lucide-react';
+import { Github, Code, ExternalLink } from 'lucide-react';
 
 const projects = [
   {
     title: 'Smart Student Attendance System',
-    description: 'A full-cycle HCI project for academic attendance tracking with role-based dashboards, QR/biometric attendance, real-time notifications, and analytics. Built using iterative prototyping and user testing.',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['Figma', 'Python', 'React.js', 'MySQL', 'Firebase', 'Chart.js'],
-    github: 'https://github.com',
-    demo: 'https://example.com',
-    icon: Users,
-    outcome: 'Delivered a working prototype that significantly improves user experience for attendance tracking.'
+    description: 'A full-cycle Human-Computer Interaction (HCI) project focused on solving real-world attendance tracking issues in academic institutions.',
+    image: 'https://images.unsplash.com/photo-1490003484691-b3e1f7c1a4f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    techStack: ['Figma', 'Python', 'Flask', 'React.js', 'MySQL', 'Firebase', 'Chart.js'],
+    github: 'https://github.com/example/smart-attendance',
+    projectLink: 'https://smart-attendance-demo.vercel.app',
+    icon: Code,
+    features: [
+      'Role-based dashboards',
+      'QR/Biometric attendance marking',
+      'Real-time notifications',
+      'Analytics & reporting'
+    ],
+    outcome: 'Delivered a working prototype that significantly improves attendance tracking user experience.'
   },
   {
     title: 'Human vs AI Code Analysis',
-    description: 'Research project analyzing code quality differences between AI-generated and human-written code using SonarQube. Evaluated 60 code samples for bug density, maintainability, reliability, and code duplications.',
+    description: 'Research project analyzing code quality differences between AI-generated and human-written code using SonarQube.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     techStack: ['SonarQube', 'GitHub', 'ChatGPT', 'GitHub Copilot', 'Java', 'Python'],
-    github: 'https://github.com',
-    demo: 'https://example.com',
+    github: 'https://github.com/example/code-analysis',
+    projectLink: 'https://code-quality-research.vercel.app',
     icon: BarChart,
-    outcome: 'Provided key insights into AI coding strengths and limitations, supporting future hybrid development research.'
+    features: [
+      'Analyzed 60 code samples',
+      'Evaluated bug density',
+      'Assessed code maintainability',
+      'Compared AI vs human code'
+    ],
+    outcome: 'Provided key insights into AI coding strengths and limitations.'
   },
   {
     title: 'Education & Employment Portal',
-    description: 'A comprehensive portal connecting students and employers. Features include secure login, real-time job/course listings, and event planning tools.',
+    description: 'A comprehensive portal connecting students and employers with real-time job and course listings.',
     image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     techStack: ['HTML', 'CSS', 'PHP', 'SQL', 'Firebase'],
-    github: 'https://github.com',
-    demo: 'https://example.com',
-    outcome: 'Increased engagement by 20% with faster performance.'
+    github: 'https://github.com/example/edu-employment-portal',
+    projectLink: 'https://edu-employment-portal.vercel.app',
+    icon: Users,
+    features: [
+      'Secure login system',
+      'Real-time job listings',
+      'Course information',
+      'Event planning tools'
+    ],
+    outcome: 'Increased student-employer engagement by 20%.'
   }
 ];
 
@@ -74,6 +93,18 @@ const Projects = () => {
               
               <CardContent className="flex-grow">
                 <p className="text-charcoal/70 mb-4">{project.description}</p>
+                
+                {project.features && (
+                  <div className="mb-4">
+                    <p className="text-primary font-medium text-sm mb-2">Key Features:</p>
+                    <ul className="list-disc list-inside text-charcoal/70 text-sm">
+                      {project.features.map((feature, idx) => (
+                        <li key={idx}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                
                 {project.outcome && (
                   <p className="text-primary font-medium text-sm">
                     Outcome: {project.outcome}
@@ -90,8 +121,9 @@ const Projects = () => {
                 </Button>
                 
                 <Button asChild size="sm">
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    Live Demo
+                  <a href={project.projectLink} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink size={16} />
+                    View Project
                   </a>
                 </Button>
               </CardFooter>
