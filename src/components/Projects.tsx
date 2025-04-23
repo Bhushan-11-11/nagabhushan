@@ -1,7 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Github, Code, ExternalLink, BarChart, Users } from 'lucide-react';
+import { Github, Code, ExternalLink, BarChart, Users, Brain } from 'lucide-react';
 
 const projects = [
   {
@@ -25,14 +24,14 @@ const projects = [
     description: 'Research project analyzing code quality differences between AI-generated and human-written code using SonarQube.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     techStack: ['SonarQube', 'GitHub', 'ChatGPT', 'GitHub Copilot', 'Java', 'Python'],
-    github: 'https://github.com/example/code-analysis',
+    github: 'https://github.com/example/code-quality-research',
     projectLink: 'https://code-quality-research.vercel.app',
-    icon: BarChart,
+    icon: Brain,
     features: [
       'Analyzed 60 code samples',
-      'Evaluated bug density',
-      'Assessed code maintainability',
-      'Compared AI vs human code'
+      'Compared AI vs human code',
+      'Evaluated maintainability',
+      'Assessed code reliability'
     ],
     outcome: 'Provided key insights into AI coding strengths and limitations.'
   },
