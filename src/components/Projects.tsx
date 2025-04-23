@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Github, Code, ExternalLink, BarChart, Users } from 'lucide-react';
@@ -6,7 +7,7 @@ const projects = [
   {
     title: 'Smart Student Attendance System',
     description: 'A full-cycle Human-Computer Interaction (HCI) project focused on solving real-world attendance tracking issues in academic institutions.',
-    image: 'https://images.unsplash.com/photo-1490003484691-b3e1f7c1a4f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
     techStack: ['Figma', 'Python', 'Flask', 'React.js', 'MySQL', 'Firebase', 'Chart.js'],
     github: 'https://github.com/example/smart-attendance',
     projectLink: 'https://smart-attendance-demo.vercel.app',
