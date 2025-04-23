@@ -1,4 +1,3 @@
-
 import { 
   Code, 
   FileText, 
@@ -7,7 +6,7 @@ import {
   Laptop
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const skills = [
   {
@@ -49,35 +48,7 @@ const skills = [
 ];
 
 const Skills = () => {
-  const [animated, setAnimated] = useState<{ [key: string]: boolean }>({});
-
-  useEffect(() => {
-    // Set up the intersection observer with a lower threshold for earlier triggering
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const skillId = entry.target.getAttribute('data-skill-id');
-            if (skillId) {
-              // Add a slight delay to make the animation more noticeable
-              setTimeout(() => {
-                setAnimated(prev => ({ ...prev, [skillId]: true }));
-              }, 100);
-            }
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-    );
-
-    // Wait for DOM to be ready before observing
-    setTimeout(() => {
-      const skillElements = document.querySelectorAll('.skill-progress');
-      skillElements.forEach(el => observer.observe(el));
-    }, 100);
-
-    return () => observer.disconnect();
-  }, []);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
   return (
     <section id="skills" className="section bg-white">
@@ -86,13 +57,18 @@ const Skills = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {skills.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="reveal bg-white p-6 rounded-lg shadow-sm">
+            <div 
+              key={categoryIndex} 
+              className="reveal bg-white p-6 rounded-lg shadow-sm transition-all duration-300 hover:shadow-md"
+              onMouseEnter={() => setHoveredCategory(category.category)}
+              onMouseLeave={() => setHoveredCategory(null)}
+            >
               <h3 className="text-xl font-semibold text-primary mb-6">{category.category}</h3>
               
               <div className="space-y-4">
                 {category.items.map((skill, skillIndex) => {
                   const Icon = skill.icon;
-                  const skillId = `${categoryIndex}-${skillIndex}`;
+                  const isHovered = hoveredCategory === category.category;
                   
                   return (
                     <div 
@@ -108,21 +84,20 @@ const Skills = () => {
                         </div>
                         <span className="text-charcoal font-medium">{skill.name}</span>
                         <span className="text-charcoal/60 text-sm ml-auto">
-                          {animated[skillId] ? skill.proficiency : '0'}%
+                          {isHovered ? `${skill.proficiency}%` : '0%'}
                         </span>
                       </div>
-                      <div 
-                        className="skill-progress"
-                        data-skill-id={skillId}
-                      >
-                        <Progress 
-                          value={animated[skillId] ? skill.proficiency : 0} 
-                          className="h-2 bg-softBlue/20"
-                          style={{
-                            transition: "all 1s ease-out",
-                          }}
-                        />
-                      </div>
+                      {isHovered && (
+                        <div className="skill-progress">
+                          <Progress 
+                            value={isHovered ? skill.proficiency : 0} 
+                            className="h-2 bg-softBlue/20"
+                            style={{
+                              transition: "all 0.6s ease-out",
+                            }}
+                          />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
