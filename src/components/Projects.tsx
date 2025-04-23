@@ -124,39 +124,12 @@ const Projects = () => {
               <CardContent className="flex-grow">
                 <p className="text-charcoal/70 mb-4">{project.description}</p>
                 
-                {project.workflow && (
-                  <div className="mb-4">
-                    <p className="text-primary font-medium text-sm mb-2">Research Workflow:</p>
-                    <div className="flex justify-between items-center">
-                      {project.workflow.map((step, idx) => (
-                        <div key={idx} className="flex flex-col items-center text-xs">
-                          <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mb-1">
-                            {idx + 1}
-                          </div>
-                          <span className="text-center">{step}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-                
                 {project.features && (
                   <div className="mb-4">
                     <p className="text-primary font-medium text-sm mb-2">Key Features:</p>
                     <ul className="list-disc list-inside text-charcoal/70 text-sm">
                       {project.features.map((feature, idx) => (
                         <li key={idx}>{feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                
-                {project.findings && (
-                  <div className="mb-4">
-                    <p className="text-primary font-medium text-sm mb-2">Key Findings:</p>
-                    <ul className="list-disc list-inside text-charcoal/70 text-sm">
-                      {project.findings.map((finding, idx) => (
-                        <li key={idx}>{finding}</li>
                       ))}
                     </ul>
                   </div>
