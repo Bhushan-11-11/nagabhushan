@@ -32,22 +32,6 @@ export const projects: Project[] = [
     outcome: 'Delivered a working prototype that significantly improves attendance tracking user experience.'
   },
   {
-    title: 'Human vs AI Code Analysis',
-    description: 'Research project analyzing code quality differences between AI-generated and human-written code using SonarQube.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['SonarQube', 'GitHub', 'ChatGPT', 'GitHub Copilot', 'Java', 'Python'],
-    github: 'https://github.com/example/code-quality-research',
-    projectLink: 'https://code-quality-research.vercel.app',
-    icon: Brain,
-    features: [
-      'Analyzed 60 code samples',
-      'Compared AI vs human code',
-      'Evaluated maintainability',
-      'Assessed code reliability'
-    ],
-    outcome: 'Provided key insights into AI coding strengths and limitations.'
-  },
-  {
     title: 'Education & Employment Portal',
     description: 'A comprehensive portal connecting students and employers with real-time job and course listings.',
     image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
