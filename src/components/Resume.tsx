@@ -16,7 +16,7 @@ const Resume = () => {
             
             <p className="text-charcoal/70 mb-8">
               Download my resume to learn more about my education, work experience, 
-              and the projects I've worked on throughout my career.
+              technical skills, and projects I've worked on throughout my career.
             </p>
             
             <Button className="bg-primary hover:bg-primary/90 text-white px-8 flex items-center gap-2">

@@ -12,8 +12,8 @@ const About = () => {
           <div className="md:w-1/3 reveal">
             <div className="relative rounded-lg overflow-hidden shadow-lg">
               <img 
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                alt="Working on computer" 
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                alt="Coding" 
                 className="w-full h-auto"
                 loading="lazy"
               />
@@ -26,27 +26,28 @@ const About = () => {
             <h3 className="text-2xl font-bold text-primary mb-4">Computer Science Graduate from Montclair State University</h3>
             
             <p className="text-charcoal/80 mb-4">
-              I am a passionate Computer Science professional with a Master's degree from Montclair State University. 
-              My academic journey has provided me with a solid foundation in software engineering principles and modern development practices.
+              Aspiring Software Developer with hands-on experience in full-stack development, databases, and cloud technologies. 
+              Skilled in Python, JavaScript, SQL, and HTML/CSS, with real-world project experience in education tech and alumni platforms. 
+              Currently pursuing a Master's in Computer Science at Montclair State University.
             </p>
             
             <p className="text-charcoal/80 mb-6">
-              My areas of expertise include front-end development, artificial intelligence, and software engineering. 
-              I'm deeply interested in creating intuitive user interfaces, developing intelligent systems, and building 
-              robust software solutions that solve real-world problems.
+              Based in Charlotte, NC, I'm passionate about creating efficient, user-friendly applications 
+              that solve real-world problems. My focus areas include web development, database management, 
+              and cloud computing.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               <div>
                 <h4 className="font-bold text-charcoal mb-2">Education</h4>
-                <p className="text-charcoal/70">MSc in Computer Science</p>
-                <p className="text-charcoal/70">Montclair State University</p>
+                <p className="text-charcoal/70">M.S. in Computer Science</p>
+                <p className="text-charcoal/70">Montclair State University (2023-2024)</p>
               </div>
               
               <div>
-                <h4 className="font-bold text-charcoal mb-2">Career Goals</h4>
-                <p className="text-charcoal/70">Develop innovative software solutions</p>
-                <p className="text-charcoal/70">Contribute to open-source communities</p>
+                <h4 className="font-bold text-charcoal mb-2">Location</h4>
+                <p className="text-charcoal/70">Charlotte, North Carolina</p>
+                <p className="text-charcoal/70">Available for relocation</p>
               </div>
             </div>
             

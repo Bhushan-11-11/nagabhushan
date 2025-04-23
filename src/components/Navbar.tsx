@@ -7,7 +7,8 @@ const NavLinks = [
   { name: 'About', href: '#about' },
   { name: 'Projects', href: '#projects' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Resume', href: '#resume' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Education', href: '#education' },
   { name: 'Contact', href: '#contact' }
 ];
 
@@ -34,15 +35,15 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#home" className="text-xl font-bold text-primary">MSU Portfolio</a>
+        <a href="#home" className="text-xl font-bold text-primary">Naga Bhushan</a>
         
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-6">
           {NavLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-charcoal hover:text-primary transition-colors"
+              className="text-charcoal hover:text-primary transition-colors text-sm"
             >
               {link.name}
             </a>
@@ -53,6 +54,7 @@ const Navbar = () => {
         <button 
           className="md:hidden text-charcoal"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 

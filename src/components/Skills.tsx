@@ -9,39 +9,39 @@ import {
 
 const skills = [
   {
-    category: 'Frontend',
+    category: 'Languages',
     items: [
-      { name: 'JavaScript', icon: Code, color: '#F7DF1E' },
-      { name: 'React', icon: Code, color: '#61DAFB' },
-      { name: 'HTML/CSS', icon: Code, color: '#E34F26' },
-      { name: 'Tailwind CSS', icon: Code, color: '#38B2AC' }
-    ]
-  },
-  {
-    category: 'Backend',
-    items: [
-      { name: 'Node.js', icon: Code, color: '#339933' },
       { name: 'Python', icon: Code, color: '#3776AB' },
-      { name: 'Express', icon: Code, color: '#000000' },
-      { name: 'RESTful APIs', icon: Code, color: '#0096D6' }
+      { name: 'JavaScript', icon: Code, color: '#F7DF1E' },
+      { name: 'SQL', icon: Code, color: '#4479A1' },
+      { name: 'PHP', icon: Code, color: '#777BB4' }
     ]
   },
   {
-    category: 'Database',
+    category: 'Web Technologies',
     items: [
-      { name: 'MongoDB', icon: Database, color: '#47A248' },
-      { name: 'PostgreSQL', icon: Database, color: '#336791' },
-      { name: 'SQL', icon: Database, color: '#4479A1' },
-      { name: 'Firebase', icon: Database, color: '#FFCA28' }
+      { name: 'HTML5', icon: Code, color: '#E34F26' },
+      { name: 'CSS3', icon: Code, color: '#1572B6' },
+      { name: 'React (basic)', icon: Code, color: '#61DAFB' },
+      { name: 'REST APIs', icon: Code, color: '#0096D6' }
     ]
   },
   {
-    category: 'Tools & Others',
+    category: 'Databases',
+    items: [
+      { name: 'MySQL', icon: Database, color: '#4479A1' },
+      { name: 'SQL Server', icon: Database, color: '#CC2927' },
+      { name: 'Firebase', icon: Database, color: '#FFCA28' },
+      { name: 'NoSQL (basic)', icon: Database, color: '#4DB33D' }
+    ]
+  },
+  {
+    category: 'Tools & Cloud',
     items: [
       { name: 'Git', icon: Github, color: '#F05032' },
-      { name: 'Docker', icon: Code, color: '#2496ED' },
-      { name: 'Agile/Scrum', icon: FileText, color: '#66CFD5' },
-      { name: 'AWS', icon: Laptop, color: '#FF9900' }
+      { name: 'Visual Studio', icon: Code, color: '#5C2D91' },
+      { name: 'AWS', icon: Laptop, color: '#FF9900' },
+      { name: 'SDLC', icon: FileText, color: '#66CFD5' }
     ]
   }
 ];

@@ -59,8 +59,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-charcoal">Email</h4>
-                    <a href="mailto:john.doe@example.com" className="text-charcoal/70 hover:text-primary transition-colors">
-                      john.doe@example.com
+                    <a href="mailto:nagabhushannaidua@gmail.com" className="text-charcoal/70 hover:text-primary transition-colors">
+                      nagabhushannaidua@gmail.com
                     </a>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ const Contact = () => {
                   
                   <div className="flex gap-4">
                     <a 
-                      href="https://linkedin.com" 
+                      href="https://linkedin.com/in/nagabhushannaidu-addala" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="bg-white p-3 rounded-full shadow-sm hover:shadow-md transition-all"
@@ -88,7 +88,7 @@ const Contact = () => {
                     </a>
                     
                     <a 
-                      href="mailto:john.doe@example.com" 
+                      href="mailto:nagabhushannaidua@gmail.com" 
                       className="bg-white p-3 rounded-full shadow-sm hover:shadow-md transition-all"
                     >
                       <Mail size={20} className="text-primary" />

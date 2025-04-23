@@ -10,9 +10,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* Logo & Copyright */}
           <div className="mb-6 md:mb-0">
-            <div className="text-2xl font-bold mb-2">MSU Portfolio</div>
+            <div className="text-2xl font-bold mb-2">Naga Bhushan Naidu Addala</div>
             <p className="text-white/60 text-sm">
-              &copy; {currentYear} John Doe. All Rights Reserved.
+              &copy; {currentYear} All Rights Reserved.
             </p>
           </div>
           
@@ -32,6 +32,9 @@ const Footer = () => {
                 <a href="#skills" className="text-white/80 hover:text-white transition-colors">Skills</a>
               </li>
               <li>
+                <a href="#experience" className="text-white/80 hover:text-white transition-colors">Experience</a>
+              </li>
+              <li>
                 <a href="#contact" className="text-white/80 hover:text-white transition-colors">Contact</a>
               </li>
             </ul>
@@ -40,7 +43,7 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex gap-4">
             <a 
-              href="https://linkedin.com" 
+              href="https://linkedin.com/in/nagabhushannaidu-addala" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
@@ -58,7 +61,7 @@ const Footer = () => {
             </a>
             
             <a 
-              href="mailto:john.doe@example.com" 
+              href="mailto:nagabhushannaidua@gmail.com" 
               className="bg-white/10 p-2 rounded-full hover:bg-white/20 transition-colors"
             >
               <Mail size={20} />

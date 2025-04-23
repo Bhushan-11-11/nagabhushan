@@ -5,42 +5,26 @@ import { Github } from 'lucide-react';
 
 const projects = [
   {
-    title: 'AI Chat Application',
-    description: 'A real-time chat application powered by AI that can understand natural language and provide helpful responses to users.',
-    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['React', 'Node.js', 'TensorFlow', 'Socket.io'],
-    github: 'https://github.com',
-    demo: 'https://example.com'
-  },
-  {
-    title: 'E-commerce Platform',
-    description: 'A full-featured e-commerce platform with product management, cart functionality, payment processing, and order tracking.',
+    title: 'Education & Employment Portal',
+    description: 'A comprehensive portal connecting students and employers. Features include secure login, real-time job/course listings, and event planning tools. Increased engagement by 20% with faster performance.',
     image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['Next.js', 'MongoDB', 'Stripe API', 'Tailwind CSS'],
+    techStack: ['HTML', 'CSS', 'PHP', 'SQL', 'Firebase'],
     github: 'https://github.com',
     demo: 'https://example.com'
   },
   {
-    title: 'Data Visualization Dashboard',
-    description: 'An interactive dashboard that displays complex data sets in an intuitive and visually appealing way using charts and graphs.',
+    title: 'High School Alumni Website',
+    description: 'A platform connecting alumni with event updates, secure login, and fast database queries. Implemented using modern web technologies resulting in a 30% increase in alumni interaction.',
     image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['D3.js', 'React', 'Express', 'PostgreSQL'],
+    techStack: ['HTML', 'CSS', 'JavaScript', 'PHP', 'SQL', 'AJAX', 'Firebase'],
     github: 'https://github.com',
     demo: 'https://example.com'
   },
   {
-    title: 'Fitness Tracking App',
-    description: 'A mobile-first application that helps users track their workouts, set fitness goals, and monitor their progress over time.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['React Native', 'Firebase', 'Redux', 'Chart.js'],
-    github: 'https://github.com',
-    demo: 'https://example.com'
-  },
-  {
-    title: 'Smart Home System',
-    description: 'An IoT system that connects various smart devices and allows users to control them through a centralized web interface.',
-    image: 'https://images.unsplash.com/photo-1581092921461-39b10bc4bf93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    techStack: ['Python', 'MQTT', 'React', 'Raspberry Pi'],
+    title: 'Personal Portfolio Website',
+    description: 'A responsive portfolio showcasing my projects and skills. Features GitHub API integration and modern UI/UX design principles implemented with React and JavaScript.',
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    techStack: ['HTML', 'CSS', 'JavaScript', 'React'],
     github: 'https://github.com',
     demo: 'https://example.com'
   }
