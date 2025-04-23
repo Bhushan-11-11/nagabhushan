@@ -1,5 +1,53 @@
-
 import { BookOpen, Award, Cloud, Palette, RefreshCw } from 'lucide-react';
+
+const coursework = {
+  title: "Graduate-Level Mastery in Core Computer Science Subjects",
+  description: "As part of my Master's in Computer Science at Montclair State University, I gained hands-on experience and deep theoretical understanding across a broad range of technical subjects. These courses laid the foundation for both my academic growth and practical skillset in software development, system design, and data-driven computing.",
+  subjects: [
+    {
+      name: "Software Engineering",
+      details: "Lifecycle models, version control, team collaboration, and design patterns"
+    },
+    {
+      name: "Human-Computer Interaction (HCI)",
+      details: "Usability principles, user research, prototyping, and interface design"
+    },
+    {
+      name: "Computer Forensics",
+      details: "Digital evidence analysis, data recovery, and cybercrime investigation"
+    },
+    {
+      name: "Computer Architecture",
+      details: "CPU design, memory management, and hardware-software integration"
+    },
+    {
+      name: "Database Systems",
+      details: "SQL, relational modeling, normalization, and transaction management"
+    },
+    {
+      name: "Algorithms and Analysis",
+      details: "Time complexity, sorting, searching, dynamic programming"
+    },
+    {
+      name: "Operating Systems",
+      details: "Process scheduling, concurrency, memory and file systems"
+    },
+    {
+      name: "Python for Data Science",
+      details: "Data wrangling, visualization, NumPy, Pandas, and machine learning basics"
+    }
+  ],
+  skills: [
+    "System Design",
+    "UX/UI Principles",
+    "Python Programming",
+    "Data Analysis",
+    "Cybersecurity",
+    "SQL",
+    "OS Internals",
+    "Algorithm Optimization"
+  ]
+};
 
 const certifications = [
   {
@@ -75,9 +123,37 @@ const Education = () => {
                   <h4 className="text-lg font-semibold text-primary">Master of Science in Computer Science</h4>
                   <p className="text-charcoal/70">Montclair State University</p>
                   <p className="text-charcoal/60">January 2023 - December 2024</p>
-                  <p className="mt-2 text-charcoal/70">
-                    Focusing on advanced software development, data structures, algorithms, and cloud computing.
-                  </p>
+                  
+                  <div className="mt-6">
+                    <h5 className="text-lg font-semibold text-primary mb-3">{coursework.title}</h5>
+                    <p className="text-charcoal/70 mb-4">{coursework.description}</p>
+                    
+                    <div className="space-y-4">
+                      <h6 className="font-semibold text-primary">Subjects Mastered:</h6>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {coursework.subjects.map((subject, idx) => (
+                          <div key={idx} className="border-l-2 border-primary pl-4">
+                            <h6 className="font-semibold text-charcoal">{subject.name}</h6>
+                            <p className="text-charcoal/70 text-sm">{subject.details}</p>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-4">
+                        <h6 className="font-semibold text-primary mb-2">Skills Gained:</h6>
+                        <div className="flex flex-wrap gap-2">
+                          {coursework.skills.map((skill, idx) => (
+                            <span 
+                              key={idx}
+                              className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
