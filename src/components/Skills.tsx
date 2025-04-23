@@ -7,6 +7,7 @@ import {
   Laptop
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
+import { useState, useEffect } from 'react';
 
 const skills = [
   {
@@ -48,6 +49,29 @@ const skills = [
 ];
 
 const Skills = () => {
+  const [animated, setAnimated] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const skillId = entry.target.getAttribute('data-skill-id');
+            if (skillId) {
+              setAnimated(prev => ({ ...prev, [skillId]: true }));
+            }
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const skillElements = document.querySelectorAll('.skill-progress');
+    skillElements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="skills" className="section bg-white">
       <div className="container mx-auto px-4">
@@ -61,6 +85,7 @@ const Skills = () => {
               <div className="space-y-4">
                 {category.items.map((skill, skillIndex) => {
                   const Icon = skill.icon;
+                  const skillId = `${categoryIndex}-${skillIndex}`;
                   
                   return (
                     <div 
@@ -75,12 +100,19 @@ const Skills = () => {
                           <Icon size={20} color={skill.color} />
                         </div>
                         <span className="text-charcoal font-medium">{skill.name}</span>
-                        <span className="text-charcoal/60 text-sm ml-auto">{skill.proficiency}%</span>
+                        <span className="text-charcoal/60 text-sm ml-auto">
+                          {animated[skillId] ? skill.proficiency : 0}%
+                        </span>
                       </div>
-                      <Progress 
-                        value={skill.proficiency} 
-                        className="h-2 bg-softBlue/20"
-                      />
+                      <div 
+                        className="skill-progress"
+                        data-skill-id={skillId}
+                      >
+                        <Progress 
+                          value={animated[skillId] ? skill.proficiency : 0} 
+                          className="h-2 bg-softBlue/20 transition-all duration-1000 ease-out"
+                        />
+                      </div>
                     </div>
                   );
                 })}
