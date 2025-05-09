@@ -4,11 +4,15 @@ import {
   FileText, 
   Github, 
   Database,
-  Laptop
+  Laptop,
+  LineChart
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
-import { useState } from 'react';
-import { Card } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const skills = [
   {
@@ -57,62 +61,125 @@ const skills = [
   }
 ];
 
-const Skills = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('Languages');
+// For the pie chart visualization
+const getOverallProficiency = (category: any) => {
+  return Math.round(category.items.reduce((sum: number, item: any) => sum + item.proficiency, 0) / category.items.length);
+};
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }: any) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
   return (
-    <section id="skills" className="section bg-gradient-to-b from-white to-softBlue/10">
+    <text x={x} y={y} fill="white" textAnchor="middle" dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+const Skills = () => {
+  const [activeCategory, setActiveCategory] = useState<string>('Languages');
+  const [animationTriggered, setAnimationTriggered] = useState(false);
+  
+  const activeCategoryData = skills.find(cat => cat.category === activeCategory) || skills[0];
+  
+  const pieData = skills.map(category => ({
+    name: category.category,
+    value: getOverallProficiency(category),
+    color: category.color
+  }));
+
+  useEffect(() => {
+    // Reset animation state when category changes
+    setAnimationTriggered(false);
+    const timer = setTimeout(() => {
+      setAnimationTriggered(true);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [activeCategory]);
+  
+  return (
+    <section id="skills" className="section py-20 bg-gradient-to-b from-white to-softBlue/20">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-center mb-12">Technical Skills</h2>
+        <h2 className="section-title text-center mb-12 text-4xl font-bold text-charcoal">Technical Expertise</h2>
         
-        <div className="max-w-5xl mx-auto">
-          {/* Category Navigation */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
-            {skills.map((category) => {
-              const Icon = category.icon;
-              const isActive = activeCategory === category.category;
-              
-              return (
-                <button 
-                  key={category.category}
-                  className={`reveal transition-all duration-300 p-4 rounded-lg flex flex-col items-center justify-center ${
-                    isActive 
-                      ? 'bg-primary text-white shadow-md scale-105' 
-                      : 'bg-white/80 hover:bg-white hover:shadow-sm'
-                  }`}
-                  onClick={() => setActiveCategory(category.category)}
-                >
-                  <div 
-                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-2 ${
-                      isActive ? 'bg-white/20' : `bg-opacity-20`
-                    }`}
-                    style={{ backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : `${category.color}20` }}
-                  >
-                    <Icon size={24} color={isActive ? "white" : category.color} />
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-12">
+            <Card className="overflow-hidden border-none shadow-lg bg-white/80 backdrop-blur-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Left side: Category selection */}
+                <div className="bg-gradient-to-br from-softBlue/10 to-white p-6 lg:p-8">
+                  <h3 className="text-xl font-semibold text-primary mb-6">Skill Categories</h3>
+                  
+                  <div className="space-y-3">
+                    {skills.map((category) => {
+                      const Icon = category.icon;
+                      const isActive = activeCategory === category.category;
+                      
+                      return (
+                        <button 
+                          key={category.category}
+                          className={`w-full group transition-all duration-300 p-4 rounded-lg flex items-center ${
+                            isActive 
+                              ? 'bg-primary text-white shadow-md' 
+                              : 'bg-white/70 hover:bg-white hover:shadow-sm'
+                          }`}
+                          onClick={() => setActiveCategory(category.category)}
+                        >
+                          <div 
+                            className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 transition-all duration-300 ${
+                              isActive ? 'bg-white/20' : 'bg-opacity-20 group-hover:scale-110'
+                            }`}
+                            style={{ backgroundColor: isActive ? 'rgba(255,255,255,0.2)' : `${category.color}20` }}
+                          >
+                            <Icon size={20} color={isActive ? "white" : category.color} />
+                          </div>
+                          <span className={`font-medium ${isActive ? 'text-white' : 'text-charcoal'}`}>
+                            {category.category}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
-                  <span className={`font-medium text-sm md:text-base ${isActive ? 'text-white' : 'text-charcoal'}`}>
-                    {category.category}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-          
-          {/* Skills Detail */}
-          <div className="reveal">
-            {skills.map((category) => {
-              if (category.category !== activeCategory) return null;
-              
-              return (
-                <div key={category.category} className="animate-scale-in">
-                  <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-md">
+                  
+                  {/* Chart visualization */}
+                  <div className="mt-8 h-[180px] hidden lg:block">
+                    <h4 className="text-sm font-medium text-charcoal/70 mb-2">Overall Proficiency</h4>
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={pieData}
+                          cx="50%"
+                          cy="50%"
+                          labelLine={false}
+                          label={renderCustomizedLabel}
+                          outerRadius={70}
+                          fill="#8884d8"
+                          dataKey="value"
+                        >
+                          {pieData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} stroke={entry.color} />
+                          ))}
+                        </Pie>
+                        <ChartTooltip content={<ChartTooltipContent />} />
+                      </PieChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+                
+                {/* Right side: Skills detail */}
+                <div className="p-6 lg:p-8 col-span-2">
+                  <div className={`${animationTriggered ? 'animate-fade-in' : 'opacity-0'}`}>
                     <h3 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                      <category.icon color={category.color} className="mr-3" />
-                      {category.category} Proficiency
+                      <activeCategoryData.icon color={activeCategoryData.color} size={24} className="mr-3" />
+                      {activeCategory} Proficiency
                     </h3>
                     
                     <div className="space-y-8">
-                      {category.items.map((skill, idx) => (
+                      {activeCategoryData.items.map((skill, idx) => (
                         <div key={idx} className="skill-item">
                           <div className="flex justify-between items-center mb-2">
                             <span className="text-lg font-medium text-charcoal">
@@ -125,22 +192,23 @@ const Skills = () => {
                           
                           <div className="relative">
                             <Progress 
-                              value={skill.proficiency} 
+                              value={animationTriggered ? skill.proficiency : 0} 
                               className="h-3 rounded-full bg-softBlue/30"
                               style={{
-                                transition: "all 1s ease-out",
+                                transition: "all 1.2s ease-out",
                               }}
                             />
                             <div 
-                              className="absolute top-0 h-3 rounded-full bg-gradient-to-r from-primary/80 to-primary"
+                              className={`absolute top-0 h-3 rounded-full bg-gradient-to-r from-${activeCategoryData.color}/80 to-${activeCategoryData.color}`}
                               style={{ 
-                                width: `${skill.proficiency}%`,
-                                animation: `growWidth 1.5s ease-out`
+                                width: animationTriggered ? `${skill.proficiency}%` : '0%',
+                                backgroundColor: activeCategoryData.color,
+                                transition: "width 1.2s ease-out"
                               }}
                             />
                           </div>
                           
-                          {/* Skill level indicator */}
+                          {/* Skill level indicators */}
                           <div className="mt-1 flex justify-between">
                             <span className="text-xs text-charcoal/60">Beginner</span>
                             <span className="text-xs text-charcoal/60">Intermediate</span>
@@ -150,29 +218,41 @@ const Skills = () => {
                       ))}
                     </div>
                     
-                    <div className="mt-8 bg-softBlue/20 p-4 rounded-lg">
-                      <h4 className="font-medium text-primary mb-2">Using {activeCategory} in my projects:</h4>
+                    <div className="mt-8 p-5 rounded-lg border border-softBlue/30 bg-gradient-to-r from-white to-softBlue/10">
+                      <h4 className="font-medium text-primary mb-2 flex items-center">
+                        <LineChart className="mr-2 h-4 w-4" /> 
+                        Using {activeCategory} in my projects:
+                      </h4>
                       <p className="text-charcoal/80">
                         I've applied these {activeCategory.toLowerCase()} skills across various projects, 
                         focusing on writing clean, maintainable code and following industry best practices.
                       </p>
                     </div>
-                  </Card>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            </Card>
+          </div>
+          
+          {/* Mobile carousel for categories (only visible on mobile) */}
+          <div className="block md:hidden mt-6">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {skills.map((category) => (
+                  <CarouselItem key={category.category} className="md:basis-1/2 lg:basis-1/3">
+                    <Card>
+                      <CardContent className="flex flex-col items-center justify-center p-6">
+                        <category.icon color={category.color} size={30} className="mb-2" />
+                        <h3 className="font-medium text-center">{category.category}</h3>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>
-      
-      <style>
-        {`
-          @keyframes growWidth {
-            from { width: 0; }
-            to { width: 100%; }
-          }
-        `}
-      </style>
     </section>
   );
 };
