@@ -148,25 +148,27 @@ const Skills = () => {
                   {/* Chart visualization */}
                   <div className="mt-8 h-[180px] hidden lg:block">
                     <h4 className="text-sm font-medium text-charcoal/70 mb-2">Overall Proficiency</h4>
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={pieData}
-                          cx="50%"
-                          cy="50%"
-                          labelLine={false}
-                          label={renderCustomizedLabel}
-                          outerRadius={70}
-                          fill="#8884d8"
-                          dataKey="value"
-                        >
-                          {pieData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} stroke={entry.color} />
-                          ))}
-                        </Pie>
-                        <ChartTooltip content={<ChartTooltipContent />} />
-                      </PieChart>
-                    </ResponsiveContainer>
+                    <div style={{ width: '100%', height: '180px' }}>
+                      <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
+                          <Pie
+                            data={pieData}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius={70}
+                            fill="#8884d8"
+                            dataKey="value"
+                          >
+                            {pieData.map((entry, index) => (
+                              <Cell key={`cell-${index}`} fill={entry.color} stroke={entry.color} />
+                            ))}
+                          </Pie>
+                          <ChartTooltip content={<ChartTooltipContent />} />
+                        </PieChart>
+                      </ResponsiveContainer>
+                    </div>
                   </div>
                 </div>
                 
@@ -174,7 +176,7 @@ const Skills = () => {
                 <div className="p-6 lg:p-8 col-span-2">
                   <div className={`${animationTriggered ? 'animate-fade-in' : 'opacity-0'}`}>
                     <h3 className="text-2xl font-bold text-primary mb-6 flex items-center">
-                      <activeCategoryData.icon color={activeCategoryData.color} size={24} className="mr-3" />
+                      {React.createElement(activeCategoryData.icon, { color: activeCategoryData.color, size: 24, className: "mr-3" })}
                       {activeCategory} Proficiency
                     </h3>
                     
@@ -199,7 +201,7 @@ const Skills = () => {
                               }}
                             />
                             <div 
-                              className={`absolute top-0 h-3 rounded-full bg-gradient-to-r from-${activeCategoryData.color}/80 to-${activeCategoryData.color}`}
+                              className="absolute top-0 h-3 rounded-full"
                               style={{ 
                                 width: animationTriggered ? `${skill.proficiency}%` : '0%',
                                 backgroundColor: activeCategoryData.color,
@@ -242,7 +244,7 @@ const Skills = () => {
                   <CarouselItem key={category.category} className="md:basis-1/2 lg:basis-1/3">
                     <Card>
                       <CardContent className="flex flex-col items-center justify-center p-6">
-                        <category.icon color={category.color} size={30} className="mb-2" />
+                        {React.createElement(category.icon, { color: category.color, size: 30, className: "mb-2" })}
                         <h3 className="font-medium text-center">{category.category}</h3>
                       </CardContent>
                     </Card>
