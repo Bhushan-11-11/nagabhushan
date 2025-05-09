@@ -165,12 +165,14 @@ const Skills = () => {
         </div>
       </div>
       
-      <style jsx>{`
-        @keyframes growWidth {
-          from { width: 0; }
-          to { width: 100%; }
-        }
-      `}</style>
+      <style>
+        {`
+          @keyframes growWidth {
+            from { width: 0; }
+            to { width: 100%; }
+          }
+        `}
+      </style>
     </section>
   );
 };
