@@ -21,7 +21,7 @@ const ChatBot = () => {
     e.preventDefault();
     if (!input.trim() || !apiKey) return;
 
-    const userMessage = { role: 'user', content: input.trim() };
+    const userMessage: Message = { role: 'user', content: input.trim() };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
@@ -35,13 +35,16 @@ const ChatBot = () => {
         },
         body: JSON.stringify({
           model: 'gpt-3.5-turbo',
-          messages: [...messages, userMessage].map(({ role, content }) => ({ role, content })),
+          messages: [...messages, userMessage].map(({ role, content }) => ({ 
+            role: role, 
+            content: content 
+          })),
         }),
       });
 
       const data = await response.json();
       if (response.ok) {
-        const assistantMessage = { 
+        const assistantMessage: Message = { 
           role: 'assistant', 
           content: data.choices[0].message.content 
         };
