@@ -1,4 +1,8 @@
 
+import React, { 
+  useState, 
+  useEffect 
+} from 'react';
 import { 
   Code, 
   FileText, 
@@ -8,7 +12,6 @@ import {
   LineChart
 } from 'lucide-react';
 import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
